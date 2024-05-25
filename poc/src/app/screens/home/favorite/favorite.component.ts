@@ -14,7 +14,11 @@ export class FavoriteComponent {
     return window.localStorage.getItem('previewPokemonList') || '';
   }
 
-  getFvaoriteList() {
-    return JSON.parse(this.getPreviewPokemonList());
+  getFvaoriteList(): Array<number>{
+    if (this.getPreviewPokemonList()) {
+      return JSON.parse(this.getPreviewPokemonList());
+    } else {
+      return []
+    }
   }
 }

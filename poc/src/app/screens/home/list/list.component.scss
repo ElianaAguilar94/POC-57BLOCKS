@@ -1,0 +1,17 @@
+.container-list {
+    .title {
+        font-size: 24px;
+        color: #56d6ff;
+        font-weight: bold;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+    .item-list {
+        background: #04122B;
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+        border-radius: 5px;
+        gap: 10px;
+    }
+}

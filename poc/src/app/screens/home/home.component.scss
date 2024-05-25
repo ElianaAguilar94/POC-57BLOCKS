@@ -1,0 +1,41 @@
+.container-home {
+    &__content {
+        border-radius: 1rem;
+        .card-home {
+            border-radius: 1rem;
+            color: white;
+            display: grid;
+            grid-template-rows: auto 1fr;
+        }
+        .content-tab {
+            background-color: #0E2141;
+            border-radius: 0 0 20px 20px;
+            overflow-y: auto;
+        }
+        .content-menu {
+            display: none;
+        }
+        .show-content {
+            display: flex;
+        }
+        .nav-bar {
+            background: #04122B;
+            padding: 1rem 1rem 0;
+            border-radius: 20px 20px 0 0;
+            button {
+                border: 1px solid #3b3d3f;
+                color: #e7e9f5;
+                background: transparent;
+                padding: 1rem 2rem;
+                border-radius: 7px 7px 0 0 !important;
+                padding: 1rem 2rem;
+                background: #0E2141;
+                margin-right: 5px;
+                font-weight: bold;
+            }
+            .menu-active {
+                border-bottom: 5px solid #469bff;
+            }
+        }
+    } 
+}

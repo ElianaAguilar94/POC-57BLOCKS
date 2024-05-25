@@ -1,0 +1,43 @@
+.container-login {
+    &__form {
+        background: linear-gradient(95deg, #56d6ff 6.17%, #469bff 94%);
+        border-radius: 1rem;
+        .field-forms {
+            background-color: #0E2141;
+            border-radius: 1rem;
+            .title , label{
+                font-size: 24px;
+                color: #56d6ff;
+                font-weight: bold;
+            }
+            label {
+                font-size: 20px;
+            }
+            input {
+                padding: .5rem .8rem;
+                font-size: 20px;
+                outline: none;
+            }
+            button {
+                background: linear-gradient(95deg, #56d6ff 6.17%, #469bff 94%);
+                border-radius: 1rem;
+                padding: 0.5rem 4rem;
+                font-weight: bold;
+                color: #0E2141;
+                outline: none;
+                border: none;
+                font-size: 20px;
+                cursor: pointer;
+                &:disabled {
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .container-login__form {
+        width: 80% !important;
+    }
+}

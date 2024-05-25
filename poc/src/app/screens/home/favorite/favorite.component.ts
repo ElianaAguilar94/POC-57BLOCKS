@@ -8,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrl: './favorite.component.scss'
 })
 export class FavoriteComponent {
+  public listFavorite!: Array<string>;
 
+  getPreviewPokemonList(): string {
+    return window.localStorage.getItem('previewPokemonList') || '';
+  }
+
+  getFvaoriteList() {
+    return JSON.parse(this.getPreviewPokemonList());
+  }
 }

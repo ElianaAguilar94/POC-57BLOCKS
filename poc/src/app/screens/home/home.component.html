@@ -7,7 +7,7 @@
             </div>
             <div class="content-tab p-4 w-100">
                 <div class="content-menu w-100" [ngClass]="{'show-content': menuActive === 'list'}">
-                    <app-list class="w-100"></app-list>
+                    <app-list [pokemonRequest]="pokemonRequest" class="w-100"></app-list>
                 </div>
                 <div class="content-menu w-100" [ngClass]="{'show-content': menuActive === 'favorite'}">
                     <app-favorite class="w-100"></app-favorite>

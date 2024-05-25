@@ -1,5 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -13,7 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   public loginForm!: FormGroup;
   
-  constructor(private router: Router, @Inject(DOCUMENT) private document: Document) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({

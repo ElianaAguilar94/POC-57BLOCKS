@@ -1,1 +1,21 @@
-<p>detail works!</p>
+@if (pokemonDetail) {
+    <div class="container-detail d-flex h-100 p-5 flex-column">
+        <div class="title d-flex justify-content-center w-100">Detail {{pokemonDetail.name}}</div>
+        <div class="card m-5">
+            <div class="card-header">
+                <strong>{{pokemonDetail.name}}</strong>
+            </div>
+            <div class="card-body">
+                <div class="card-text d-flex">
+                    <strong>Base Experiencia:</strong>{{pokemonDetail.base_experience}}
+                </div>
+                <div class="card-text d-flex">
+                    <strong>Height:</strong>{{pokemonDetail.height}}
+                </div>
+                <div class="card-text d-flex">
+                    <strong>Weight:</strong>{{pokemonDetail.weight}}
+                </div>
+            </div>
+        </div>
+    </div>
+}

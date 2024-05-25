@@ -1,1 +1,7 @@
-<p>favorite works!</p>
+<div class="container-favorite">
+    @for (item of getFvaoriteList();track item) {
+        <div>
+            {{item}}
+        </div>
+    }
+</div>

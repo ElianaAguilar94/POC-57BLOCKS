@@ -1,4 +1,17 @@
-<div class="container-list">
+<div class="container-list p-3">
+    <input type="text"
+    placeholder="Search"
+    matInput
+    [formControl]="autocompletePokemon"
+    [matAutocomplete]="auto"
+    class="w-100"
+    >
+    <mat-autocomplete #auto="matAutocomplete">
+        @for (option of autosuggestion; track option) {
+          <mat-option [value]="option">{{option.name}}</mat-option>
+        }
+    </mat-autocomplete>
+
     <div class="title p-3">Pokemon {{pokemonRequest?.count}}</div>
     <div>
         @for (item of pokemonRequest?.results;track item.name) {
@@ -22,4 +35,10 @@
             </div>
         }
     </div>
+    <mat-paginator 
+        [length]="totalItems"
+        [pageSize]="pageSize"
+        [pageIndex]="currentPage"
+        (page)="pageChanged($event)"
+    ></mat-paginator>
 </div>

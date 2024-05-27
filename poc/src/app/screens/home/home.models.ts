@@ -5,7 +5,7 @@ export interface PokemonRequest {
     results: Array<PokemonList>
 }
 
-interface PokemonList {
+ export interface PokemonList {
     name: string,
     url: string
 }

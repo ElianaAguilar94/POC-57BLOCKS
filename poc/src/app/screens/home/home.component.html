@@ -1,18 +1,14 @@
 <div class="container-home p-5 h-100">
     <div class="container-home__content h-100 p-1">
         <div class="card-home h-100">
-            <div class="nav-bar">
-                <button [ngClass]="{'menu-active': menuActive === 'list'}" (click)="menuActive = 'list'">List</button>
-                <button [ngClass]="{'menu-active': menuActive === 'favorite'}" (click)="menuActive = 'favorite'">Favorite</button>
-            </div>
-            <div class="content-tab p-4 w-100">
-                <div class="content-menu w-100" [ngClass]="{'show-content': menuActive === 'list'}">
-                    <app-list [pokemonRequest]="pokemonRequest" class="w-100"></app-list>
-                </div>
-                <div class="content-menu w-100" [ngClass]="{'show-content': menuActive === 'favorite'}">
+            <mat-tab-group class="h-100">
+                <mat-tab label="List"> 
+                    <app-list [pokemonRequest]="pokemonRequest" (offset)="changeOffset($event)" class="w-100"></app-list>
+                </mat-tab>
+                <mat-tab label="Favorite">
                     <app-favorite class="w-100"></app-favorite>
-                </div>
-            </div>
+                </mat-tab>
+            </mat-tab-group>
         </div>
     </div>
 </div>

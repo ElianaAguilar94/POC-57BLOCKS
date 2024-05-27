@@ -1,20 +1,44 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, output } from '@angular/core';
 import { environment } from '../../../../environments/environment.development';
-import { PokemonRequest } from '../home.models';
+import { PokemonRequest, PokemonList } from '../home.models';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatFormFieldModule} from '@angular/material/form-field'
+
 
 @Component({
   selector: 'app-list',
   standalone: true,
-  imports: [],
+  imports: [
+    MatPaginatorModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
+  ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
-export class ListComponent {
+export class ListComponent implements OnChanges {
+
+  public totalItems: number = 0;
+  public pageSize: number = 20;
+  public currentPage: number = 0;
 
   @Input() pokemonRequest!: PokemonRequest;
-
+  offset = output<number>();
+  public autocompletePokemon= new FormControl('');
+  public autosuggestion: Array<PokemonList>=[];
+  
   constructor() {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['pokemonRequest'].currentValue) {
+      this.setPagination();
+    }
+  }
 
   getPreviewPokemonList(): string {
     return window.localStorage.getItem('previewPokemonList') || '';
@@ -69,5 +93,15 @@ export class ListComponent {
     } else {
       return false
     }
+  }
+
+  setPagination(): void {
+    this.autosuggestion = this.pokemonRequest.results.slice(15);
+    this.totalItems = this.pokemonRequest.count;
+  }
+ 
+  pageChanged(event: PageEvent) {
+    this.currentPage = event.pageIndex;
+    this.offset.emit((event.pageIndex)*this.pageSize)
   }
 }

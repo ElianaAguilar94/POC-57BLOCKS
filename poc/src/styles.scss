@@ -2,12 +2,12 @@
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 
 html , body  {
     margin: 0;
     height: 100%;
     font-family: "Nunito Sans", sans-serif;
-    overflow-y: hidden;
 }
 
 ::-webkit-scrollbar {

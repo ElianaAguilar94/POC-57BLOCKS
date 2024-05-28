@@ -1,20 +1,22 @@
 <div class="container-list p-3">
-    <input type="text"
-    placeholder="Search"
-    matInput
-    [formControl]="autocompletePokemon"
-    [matAutocomplete]="auto"
-    class="w-100"
-    >
-    <mat-autocomplete #auto="matAutocomplete">
-        @for (option of autosuggestion; track option) {
-          <mat-option [value]="option">{{option.name}}</mat-option>
-        }
-    </mat-autocomplete>
+    <mat-form-field>
+        <mat-label>Pokemon</mat-label>
+        <input type="text"
+               placeholder="Search"
+               aria-label="Pokemon"
+               matInput
+               [formControl]="autocompletePokemon"
+               [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" requireSelection="true">
+          @for (option of autosuggestion; track option) {
+            <mat-option [value]="option.name">{{option.name}}</mat-option>
+          }
+        </mat-autocomplete>
+    </mat-form-field>
 
     <div class="title p-3">Pokemon {{pokemonRequest?.count}}</div>
-    <div>
-        @for (item of pokemonRequest?.results;track item.name) {
+    <div *ngIf="pokemonRequest">
+        @for (item of pokemonRequest.results;track item.name) {
             <div class="item-list d-flex">
                 <div>
                     <img src="../../../../assets/icons/user-icon.svg">

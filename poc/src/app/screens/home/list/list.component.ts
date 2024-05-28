@@ -1,12 +1,12 @@
-import { Component, Input, OnChanges, SimpleChanges, output } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation, output } from '@angular/core';
 import { environment } from '../../../../environments/environment.development';
 import { PokemonRequest, PokemonList } from '../home.models';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatFormFieldModule} from '@angular/material/form-field'
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-list',
@@ -16,12 +16,15 @@ import {MatFormFieldModule} from '@angular/material/form-field'
     MatInputModule,
     MatAutocompleteModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule
   ],
   templateUrl: './list.component.html',
-  styleUrl: './list.component.scss'
+  styleUrl: './list.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
-export class ListComponent implements OnChanges {
+export class ListComponent implements OnChanges, OnInit{
 
   public totalItems: number = 0;
   public pageSize: number = 20;
@@ -31,8 +34,19 @@ export class ListComponent implements OnChanges {
   offset = output<number>();
   public autocompletePokemon= new FormControl('');
   public autosuggestion: Array<PokemonList>=[];
-  
+
   constructor() {}
+
+  ngOnInit() {  
+   this.autocompletePokemon.valueChanges.subscribe(search => {
+    this.autosuggestion = this.filterPokemon(search || '');
+   });
+  }
+
+  filterPokemon(search: string) {
+    return this.pokemonRequest.results.filter(pokemon=>
+      pokemon.name.toLowerCase().indexOf(search.toLowerCase()) === 0);
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['pokemonRequest'].currentValue) {
@@ -96,7 +110,7 @@ export class ListComponent implements OnChanges {
   }
 
   setPagination(): void {
-    this.autosuggestion = this.pokemonRequest.results.slice(15);
+    this.autosuggestion = this.pokemonRequest.results;
     this.totalItems = this.pokemonRequest.count;
   }
  

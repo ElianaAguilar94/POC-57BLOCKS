@@ -1,11 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { MainService } from './main.service';
+import { HttpClientModule } from '@angular/common/http';
 
-describe('SpotifyService', () => {
+describe('MainService', () => {
   let service: MainService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports:[HttpClientModule]
+    });
     service = TestBed.inject(MainService);
   });
 
